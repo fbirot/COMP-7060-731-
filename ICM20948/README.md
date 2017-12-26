@@ -57,3 +57,19 @@ We have setup two UARTs, one for logging and one for getting the sensor data. Th
 ```
 
 We can connect to these UART's using putty or hyper terminal or even python using pyserial.
+
+## Sensor-cli
+
+To implement the cube program, we use sensor-cli. It is located in the extracted folder tools/sensor-cli.exe
+
+Navigate to the above specified folder through command prompt and type the following command:
+``` sensor-cli --target=emdwrapicm20x48,port=\\.\COMxx --adapter=dummy ```  COMXX being the comport of daughter board
+
+If the device is correctly connected and flashed, this will display ```sensor-cli>``` prompt waiting for user input.
+
+help command provides list of commands available.
+
+type ```cube on grv``` and then ```en grv 20``` to start the cube program. 
+
+To stop the sensor output, type ```dis grv```
+
