@@ -1,4 +1,6 @@
-# COMP-7060-731
+# UMASS LOWELL - Mechanical Dept - RADAR - IMU System for 3D-DIC technique
+## Subject: COMP-7060-731
+
 
 This repo contains the programming code and script to get raw data from ICM20948 IMU and Sivers IMA 77GHZ Radar and process the raw data. 
 
