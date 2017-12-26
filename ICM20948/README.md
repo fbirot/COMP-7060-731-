@@ -1,4 +1,4 @@
-"# ICM20948"
+# ICM20948
 
 ## Initial Steps:
 
