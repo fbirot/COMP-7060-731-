@@ -73,3 +73,11 @@ type ```cube on grv``` and then ```en grv 20``` to start the cube program.
 
 To stop the sensor output, type ```dis grv```
 
+## To make changes to the code
+
+To modify the existing code, open the project in IAR Embedded workbech and open [example.c](https://github.com/prasanthnarasimha/COMP-7060-731-/blob/master/ICM20948/example.c)
+
+Make the necessary changes and then click on Project->build all.
+
+Once the build is completed, go to Project->Download and Debug. The modified code is compiled and downloaded to the flash memory. Once you're certain that the code is running as expected, click on run.
+
