@@ -10,6 +10,7 @@
 
 ####--I-M-P-O-R-T-S---############################################################################################################
 ##################################################################################################################################
+
 import time #built-in Time library, sleep function to pause CPU
 
 ##################################################################################################################################
@@ -41,8 +42,6 @@ import numpy as np
 # SciPy is an open source Python library used for scientific computing and technical computing.
 import scipy
 ##################################################################################################################################
-    
-
 ##################################################################################################################################
 #Setting up the Port and Data channel speed. Initialization of communications port.
 ser = serial.Serial(
@@ -53,11 +52,9 @@ ser = serial.Serial(
 # Printing the connection to serial port status, if OK, then proceed.
 print ser.isOpen()
 ##################################################################################################################################
-
-
 ##################################################################################################################################
-# Initialize a small list of commands to be sent over the serial connection, which help to initialize, sweep, trace and collect the 
-# radar data.
+# Initialize a small list of commands to be sent over the serial connection, which help to initialize, sweep, trace and collect 
+# the radar data.
 list_of_commands = [
     'hard:syst rs3400w',
     'hard:syst ?',
@@ -76,38 +73,56 @@ list_of_commands = [
 # Initialize certain variables
 measuredDist = 0.0          #Floating value initilization
 ##################################################################################################################################
-
-
-
-
-
 ##################################################################################################################################
 #Start a try-catch block to handle exceptions and prevent program crash
-try:                    
+try:
     # Loop over the list of commands one by one
     for command in list_of_commands:
-        ser.write(command + '\r\n') # Push the command to RADAR device and expect to receive feedback from it.
+        ser.write(command + '\r\n')     # Push the command to RADAR device and expect to receive feedback from it.
         out = ''
-        print command               # Display the current command to the user for feedback.
-        if(command == 'TRACE:DATA ?'):
-            print 'if'              # Tracing for debugging purposes
+        print command                   # Display the current command to the user for feedback.
+        if(command == 'TRACE:DATA ?'):  
+            print 'if'                  # Tracing for debugging purposes
             time.sleep(1)
         else:
-            print 'else'            # Tracing for debugging purposes
-            time.sleep(0.4)
+            print 'else'                # Tracing for debugging purposes
+            time.sleep(.4 )
         # Check status and wait to receive the output from the RADAR.
         while ser.inWaiting() > 0:
-            out += ser.read(1)      # This object holds the output data strings.
-        print out
-        # Showing the measuredData from RADAR.
+            out += ser.read(1)    
+        print out                       # This object holds the output data strings.
+        # Showing the measuredData from RADAR.      
         if(command == 'TRACe:READ:DISTance ?'):
             out = out.replace("\r\n","")
-            measuredDist = float(out)
+            x = float(out)
         else:
             print out
-    # The serial library allows to close the serial port connection once done
+    # The serial library allows to close the serial port connection once done      
     ser.close()
     # Accurate distance generation using curve fitted calibration formula
-    dist = -0.003754 * measuredDist * measuredDist - 1.391992 * measuredDist + 128.851509
-    print 'Distance(m):::'
+    dist = -0.003754*x*x - 1.391992*x + 128.851509 
+    print 'dist:::'
     print dist
+    
+#    signal = pd.read_csv('2mcommands7.csv', sep='\r',  header=None, error_bad_lines=False)
+#    signal = signal.drop(signal.index[len(signal)-1])
+##    signal.to_csv('2mcommand7.csv', encoding='utf-8', index=False)  
+#    signal.columns = ['a']
+#
+##    print signal.describe()
+#      
+#    x = np.linspace(7.600000e+10, 7.700000e+10,  signal.count())
+#    sweep_time = 5.005000e-02 
+#    c = 2.998e+8 
+#    freq_step = 9.999974e+05
+#    freq_points = 1001
+#    slope = (freq_step*freq_points)/(sweep_time);
+#    signal[['a']] = signal[['a']].astype(float)   
+#    signal = signal.applymap(lambda x: (c*x/(2*slope)))  
+#    plt.plot(x, signal)
+#    print signal.describe()
+#Except block when and exception occurs
+except:
+    #Error handling
+    print "error"
+    ser.close()
