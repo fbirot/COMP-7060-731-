@@ -1,6 +1,7 @@
-# UMASS LOWELL - Mechanical Dept & Computer Science Dept - RADAR + IMU System 
+# UMASS LOWELL
+## Mechanical Dept & Computer Science Dept - RADAR + IMU System 
 
-## Details
+### Details
 
 This repo contains the programming code and scripts to get raw data from ICM20948 IMU and Sivers IMA 77GHZ Radar and to process the raw data. 
 
