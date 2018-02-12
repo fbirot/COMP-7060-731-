@@ -1,4 +1,4 @@
-# UMASS LOWELL
+# University of Masachusetts Lowell
 ## Mechanical Dept & Computer Science Dept - RADAR + IMU System 
 
 ### Details
